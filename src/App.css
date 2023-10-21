@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+
+@font-face {
+  font-family: 'Clepto';
+  src: url('../fonts/Clepto-Regular.ttf') format('truetype');
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -33,10 +39,110 @@
   }
 }
 
-.card {
+.card2 {
   padding: 2em;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/*  CRIADO POR MIM FUNDO */
+.corfundo {
+  -webkit-animation: corfundo 25s ease-in-out 0.8s infinite both;
+  animation: corfundo 25s ease-in-out 0.8s infinite both;
+}
+
+@-webkit-keyframes corfundo {
+  0% {
+    background: #125B50;
+  }
+  25% {
+    background: #F8B400;
+  }
+50% {
+    background: #FAF5E4;
+  }
+  75% {
+    background: #FF6363;
+  }
+  100% {
+    background: #125B50;
+  }
+}
+
+@keyframes corfundo {
+  0% {
+    background: #125B50;
+  }
+  25% {
+    background: #F8B400;
+  }
+50% {
+    background: #FAF5E4;
+  }
+  75% {
+    background: #FF6363;
+  }
+  100% {
+    background: #125B50;
+  }
+}
+/* APARECER */
+.aparecer {
+	-webkit-animation: aparecer 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: aparecer 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes aparecer {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes aparecer {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+/* tEXTO SOMBRA TITULO */
+.sombratitulo {
+	-webkit-animation: sombratitulo 0.6s 1s both;
+	        animation: sombratitulo 0.6s 1s both;
+}
+@-webkit-keyframes sombratitulo {
+  0% {
+    text-shadow: 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000;
+    -webkit-transform: translateX(0) translateY(0);
+            transform: translateX(0) translateY(0);
+  }
+  100% {
+    text-shadow: 1px 1px #000000, 2px 2px #000000, 3px 3px #000000, 4px 4px #000000, 5px 5px #000000, 6px 6px #000000, 7px 7px #000000, 8px 8px #000000;
+    -webkit-transform: translateX(-8px) translateY(-8px);
+            transform: translateX(-8px) translateY(-8px);
+  }
+}
+@keyframes sombratitulo {
+  0% {
+    text-shadow: 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000;
+    -webkit-transform: translateX(0) translateY(0);
+            transform: translateX(0) translateY(0);
+  }
+  100% {
+    text-shadow: 1px 1px #000000, 2px 2px #000000, 3px 3px #000000, 4px 4px #000000, 5px 5px #000000, 6px 6px #000000, 7px 7px #000000, 8px 8px #000000;
+    -webkit-transform: translateX(-8px) translateY(-8px);
+            transform: translateX(-8px) translateY(-8px);
+  }
 }
