@@ -1,65 +1,126 @@
 import React, { useState } from 'react';
+import { Guerreiro, Mago, Bardo, Ladrao, JogadorClasse } from '../../../type_back/src/Playerclass';
 
-function Card({ number, title, description, onSelect, imagePath }) {
+const guerreiro = new JogadorClasse("Thurigo", 0, 0, new Guerreiro);
+const mago = new JogadorClasse("Thurigo", 0, 0, new Mago);
+const bardo = new JogadorClasse("Thurigo", 0, 0, new Bardo);
+const ladrao = new JogadorClasse("Thurigo", 0, 0, new Ladrao);
+
+function Card({ number, title, description, onSelect, imagePath, color, jogador }) {
+    const cardStyle = {
+        backgroundColor: color,
+    };
+
     return (
-        <div className="card-basic" onClick={() => onSelect({ number, title, description })}>
+        <div className="card-basic" style={cardStyle} onClick={() => onSelect(title)}>
             <img src={imagePath} alt={title} className="image" />
-            <p className="number-h1">{number}</p>
-            <p className="h1 , sombratitulo">{title}</p>
-            <p className="p">{description}</p>
+            <p className="h1, sombratitulo">{title}</p>
+            <p className="p">
+            Força: {jogador.classe.forca} ,{" "} 
+            carisma: {jogador.classe.carisma},{" "} 
+            Agilidade: {jogador.classe.agilidade},{" "}
+            Defesa: {jogador.classe.defesa},{" "}
+            Sorte: {jogador.classe.sorte},{" "}
+            </p>
+
         </div>
     );
 }
 
 function Playermaker() {
-    const [selectedCard, cardselecionado] = useState(null);
+    const [selectedCard, setSelectedCard] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedClass, setSelectedClass] = useState(null);
 
     const cards = [
         {
             number: "01",
             title: "Guerreiro",
             description: "salve",
-            imagePath: "src/assets/img/guerreiro.png" 
+            imagePath: "src/assets/img/guerreiro.png",
+            color: "darkred",
+            jogador: guerreiro,
         },
         {
             number: "02",
             title: "Mago",
             description: "salve",
-            imagePath: "src/assets/img/mago.png" 
+            imagePath: "src/assets/img/mago.png",
+            color: "darkblue",
+            jogador: mago,
         },
         {
             number: "03",
             title: "Bardo",
             description: "salve",
-            imagePath: "src/assets/img/bardo.png" 
+            imagePath: "src/assets/img/bardo.png",
+            color: "darkgreen",
+            jogador: bardo,
         },
         {
             number: "04",
             title: "Ladrão",
             description: "salve",
-            imagePath: "src/assets/img/ladrao.png" 
+            imagePath: "src/assets/img/ladrao.png",
+            color: "darkorange",
+            jogador: ladrao,
         },
-        // Adicione mais objetos para mais cards
-    ]
+    ];
+
+    const handleCardSelect = (selectedTitle) => {
+        let selectedCharacter;
+
+        switch (selectedTitle) {
+            case "Guerreiro":
+                selectedCharacter = guerreiro;
+                break;
+            case "Mago":
+                selectedCharacter = mago;
+                break;
+            case "Bardo":
+                selectedCharacter = bardo;
+                break;
+            case "Ladrão":
+                selectedCharacter = ladrao;
+                break;
+            default:
+                // Trate casos não reconhecidos
+                break;
+        }
+
+        setSelectedClass(selectedCharacter);
+        setSelectedCard(selectedTitle);
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
 
     return (
-        <div className='tela ,  pinga-pinga , sombra-tela , aparecer '>
+        <div className='tela , pinga-pinga , sombra-tela ,  aparecer'>
             <div className='container-flex'>
                 {cards.map((card, index) => (
-                    <Card key={index} {...card} onSelect={cardselecionado} />
+                    <Card key={index} {...card} onSelect={handleCardSelect} />
                 ))}
             </div>
 
-            <div className='container-flex'>
-                {selectedCard && (
-                    <div >
-                        <p> Você selecionou: {selectedCard.title}</p>
+            {showModal && (
+                <div className="modal">
+                    <div className="container-flex , modal-content">
+                        <h2 >{selectedCard}</h2>
+                        <p>Classe: {selectedClass.title}</p>
+                        <p>Força: {selectedClass.classe.forca}</p>
+                        <p>Magia: {selectedClass.magia}</p>
+                        <p>Agilidade: {selectedClass.agilidade}</p>
+                        <button onClick={closeModal}>Fechar</button>
                     </div>
-                )}
-                <button className='botao-balanca'>
-                    Selecionar
-                </button>
-            </div>
+                </div>
+            )}
+
+            <button className='botao-balanca'>
+                Selecionar
+            </button>
         </div>
     );
 }

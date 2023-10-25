@@ -120,6 +120,7 @@
     border: 1px solid rgba(0, 0, 0, 0.486); /* Adicione um contorno preto de 10px */
     gap: 10px;
     transition: all 0.3s ease-in-out;
+    padding-bottom: 15px;
 }
 
 /* Defina um valor mínimo para evitar que a tela seja muito pequena */
@@ -172,7 +173,7 @@
   }
   
   .card-basic > .p {
-    color: #9e9da1;
+    color: #fcfcfc;
     font-size: 14px;
     text-align: center;
   }
