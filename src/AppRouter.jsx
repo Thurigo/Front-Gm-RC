@@ -10,6 +10,7 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/playermaker" element={<Playermaker />} />
+        <Route path='/batalha' element={<Batalha/>}/>
       </Routes>
     </Router>
   );

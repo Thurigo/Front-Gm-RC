@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Guerreiro, Mago, Bardo, Ladrao, JogadorClasse } from '../../../type_back/src/Playerclass';
 
-const guerreiro = new JogadorClasse("Thurigo", 0, 0, new Guerreiro);
-const mago = new JogadorClasse("Thurigo", 0, 0, new Mago);
-const bardo = new JogadorClasse("Thurigo", 0, 0, new Bardo);
-const ladrao = new JogadorClasse("Thurigo", 0, 0, new Ladrao);
+let guerreiro = new JogadorClasse("Thurigo", 0, 0, new Guerreiro);
+let mago = new JogadorClasse("Thurigo", 0, 0, new Mago);
+let bardo = new JogadorClasse("Thurigo", 0, 0, new Bardo);
+let ladrao = new JogadorClasse("Thurigo", 0, 0, new Ladrao);
 
 function Card({ number, title, description, onSelect, imagePath, color, jogador }) {
     const cardStyle = {
@@ -16,11 +16,11 @@ function Card({ number, title, description, onSelect, imagePath, color, jogador 
             <img src={imagePath} alt={title} className="image" />
             <p className="h1, sombratitulo">{title}</p>
             <p className="p">
-            Força: {jogador.classe.forca} ,{" "} 
-            carisma: {jogador.classe.carisma},{" "} 
-            Agilidade: {jogador.classe.agilidade},{" "}
-            Defesa: {jogador.classe.defesa},{" "}
-            Sorte: {jogador.classe.sorte},{" "}
+                Força: {jogador.classe.forca} ,{" "}
+                carisma: {jogador.classe.carisma},{" "}
+                Agilidade: {jogador.classe.agilidade},{" "}
+                Defesa: {jogador.classe.defesa},{" "}
+                Sorte: {jogador.classe.sorte},{" "}
             </p>
 
         </div>
@@ -28,9 +28,10 @@ function Card({ number, title, description, onSelect, imagePath, color, jogador 
 }
 
 function Playermaker() {
-    const [selectedCard, setSelectedCard] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-    const [selectedClass, setSelectedClass] = useState(null);
+    let [selectedCard, setSelectedCard] = useState(null);
+    let [showModal, setShowModal] = useState(false);
+    let [selectedClass, setSelectedClass] = useState(null);
+    const [inputName, setInputName] = useState("");
 
     const cards = [
         {
@@ -84,9 +85,9 @@ function Playermaker() {
                 selectedCharacter = ladrao;
                 break;
             default:
-                // Trate casos não reconhecidos
                 break;
         }
+        selectedCharacter.nome = inputName;
 
         setSelectedClass(selectedCharacter);
         setSelectedCard(selectedTitle);
@@ -97,6 +98,17 @@ function Playermaker() {
         setShowModal(false);
     };
 
+    const handleInputChange = (e) => {
+        const newName = e.target.value;
+        setInputName(newName); // Atualiza inputName em tempo real
+        if (selectedClass) {
+            selectedClass.nome = newName; // Atualiza a propriedade nome em tempo real
+        }
+    };
+
+    const handleButtonClick = () => {
+    };
+
     return (
         <div className='tela , pinga-pinga , sombra-tela ,  aparecer'>
             <div className='container-flex'>
@@ -105,22 +117,40 @@ function Playermaker() {
                 ))}
             </div>
 
+            <input
+                className="input"
+                type="text"
+                value={inputName}
+                onChange={handleInputChange}
+                placeholder="Nome"
+            />
+            <i></i>
+
             {showModal && (
-                <div className="modal">
-                    <div className="container-flex , modal-content">
-                        <h2 >{selectedCard}</h2>
-                        <p>Classe: {selectedClass.title}</p>
-                        <p>Força: {selectedClass.classe.forca}</p>
-                        <p>Magia: {selectedClass.magia}</p>
-                        <p>Agilidade: {selectedClass.agilidade}</p>
-                        <button onClick={closeModal}>Fechar</button>
+                <div className="">
+
+                    <div className="">
+                        <h4 >{selectedClass.nome}</h4>
+                        <h5>Classe: {selectedCard}{" "}
+                            Força: {selectedClass.classe.forca}{" "}
+                            Agilidade: {selectedClass.classe.agilidade}{" "}
+                            Carisma: {selectedClass.classe.carisma}{" "}
+                            Desefesa:{selectedClass.classe.defesa}{" "}
+                            Sorte:{selectedClass.classe.sorte}{" "}</h5>
+                    </div>
+
+
+                    <div class="botaoseleciona ">
+                        
+                        <Link to="/batalha">
+                        <button className="btn" onClick={() => handleButtonClick()}>
+                            <span></span>
+                            <p data-start="good luck!" data-text="Começar!" data-title="Selecionar"></p>
+                        </button>
+                        </Link>
                     </div>
                 </div>
             )}
-
-            <button className='botao-balanca'>
-                Selecionar
-            </button>
         </div>
     );
 }

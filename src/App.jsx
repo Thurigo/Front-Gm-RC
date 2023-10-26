@@ -20,15 +20,15 @@ function App() {
       </h1>
       <div className="card2">
         <Link to="/playermaker">
-          <button className='botao-balanca' onClick={handleStartClick}>
+          <button className='botao-balanca , logo' onClick={handleStartClick}>
             Iniciar
           </button>
         </Link>
       </div>
 
-      <div class="card">
+      <div class="card ">
     <svg viewBox="0 0 24 24"></svg>
-    <div class="card__content">
+    <div class="card__content ">
     <p class="card__title">Perdeu</p>
     <p class="card__description">Tamo junto.</p>
   </div>
